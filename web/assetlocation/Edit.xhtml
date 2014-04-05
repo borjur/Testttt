@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="AssetlocationEditDlg" widgetVar="AssetlocationEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.EditAssetlocationTitle}" closeOnEscape="true">
+
+            <h:form id="AssetlocationEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{assetlocationController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditAssetlocationLabel_assetlocationPK_assetID}" for="assetlocationPK_assetID" />
+                        <h:outputText id="assetlocationPK_assetID" value="#{assetlocationController.selected.assetlocationPK.assetID}" />
+
+
+                        <h:outputLabel value="#{myBundle.EditAssetlocationLabel_assetlocationPK_locationID}" for="assetlocationPK_locationID" />
+                        <h:outputText id="assetlocationPK_locationID" value="#{assetlocationController.selected.assetlocationPK.locationID}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{assetlocationController.save}" value="#{myBundle.Save}" update="display,:AssetlocationListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,AssetlocationEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="AssetlocationEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

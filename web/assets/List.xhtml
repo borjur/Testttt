@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="AssetsListForm">
+
+        <p:panel header="#{myBundle.ListAssetsTitle}">
+            <p:contextMenu for="datalist">  
+                <p:menuitem id="createMenuItem" icon="ui-icon-plus" value="#{myBundle.Create}" onclick="document.getElementById('AssetsListForm:createButton').click();"/>
+                <p:menuitem id="readMenuItem" icon="ui-icon-search" value="#{myBundle.View}" onclick="document.getElementById('AssetsListForm:viewButton').click();"/>
+                <p:menuitem id="updateMenuItem" icon="ui-icon-pencil" value="#{myBundle.Edit}" onclick="document.getElementById('AssetsListForm:editButton').click();"/>
+                <p:menuitem id="deleteMenuItem" icon="ui-icon-trash" value="#{myBundle.Delete}" onclick="document.getElementById('AssetsListForm:deleteButton').click();"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{assetsController.items}"
+                         var="item"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{assetsController.selected}"
+                         style="width:2080px;">
+
+                <p:ajax event="rowSelect"   update=":AssetsListForm:createButton :AssetsListForm:viewButton :AssetsListForm:editButton :AssetsListForm:deleteButton"/>
+                <p:ajax event="rowUnselect" update=":AssetsListForm:createButton :AssetsListForm:viewButton :AssetsListForm:editButton :AssetsListForm:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('AssetsListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAssetsTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.locationId}" filterBy="#{item.locationId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAssetsTitle_locationId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.locationId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.groupId}" filterBy="#{item.groupId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAssetsTitle_groupId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.groupId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.created}" filterBy="#{item.created}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAssetsTitle_created}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.created}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.modified}" filterBy="#{item.modified}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAssetsTitle_modified}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.modified}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.tag}" filterBy="#{item.tag}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAssetsTitle_tag}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tag}"/>
+                </p:column>
+
+                
+                                    <p:column sortBy="#{item.assetName}" filterBy="#{item.assetName}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAssetsTitle_assetName}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.assetName}"/>
+                                    </p:column>
+                
+                
+                                    <p:column sortBy="#{item.model}" filterBy="#{item.model}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAssetsTitle_model}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.model}"/>
+                                    </p:column>
+                
+                
+                                    <p:column sortBy="#{item.serNo}" filterBy="#{item.serNo}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAssetsTitle_serNo}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.serNo}"/>
+                                    </p:column>
+                
+                
+                                    <p:column sortBy="#{item.value}" filterBy="#{item.value}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAssetsTitle_value}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.value}"/>
+                                    </p:column>
+                
+                
+                                    <p:column sortBy="#{item.assetCondition}" filterBy="#{item.assetCondition}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAssetsTitle_assetCondition}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.assetCondition}"/>
+                                    </p:column>
+                
+               
+                                    <p:column sortBy="#{item.assetType}" filterBy="#{item.assetType}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAssetsTitle_assetType}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.assetType}"/>
+                                    </p:column>
+                
+                
+                                    <p:column sortBy="#{item.status}" filterBy="#{item.status}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListAssetsTitle_status}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.status}"/>
+                                    </p:column>
+                
+
+            </p:dataTable>
+            
+            
+                        <h:panelGrid columns="2">
+	<p:panel header="Export All Data">
+            
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/excel.png" />
+			<p:dataExporter type="xls" target="datalist" fileName="assets" />
+		</h:commandLink>
+
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/pdf.png" />
+			<p:dataExporter type="pdf" target="datalist" fileName="assets"/>
+		</h:commandLink>
+		
+
+	</p:panel>
+	
+	<p:panel header="Export Page Data">
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/excel.png" />
+			<p:dataExporter type="xls" target="datalist" fileName="assets" pageOnly="true"/>
+		</h:commandLink>
+
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/pdf.png" />
+			<p:dataExporter type="pdf" target="datalist" fileName="assets" pageOnly="true"/>
+		</h:commandLink>
+		
+
+	</p:panel>
+</h:panelGrid>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{assetsController.prepareCreate}" update=":AssetsCreateForm" oncomplete="AssetsCreateDialog.show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":AssetsViewForm" oncomplete="AssetsViewDialog.show()" disabled="#{empty assetsController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":AssetsEditForm" oncomplete="AssetsEditDialog.show()" disabled="#{empty assetsController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{assetsController.delete}" update=":growl,datalist" disabled="#{empty assetsController.selected}"/>
+
+        </p:panel>
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AssetsCreateDlg" widgetVar="AssetsCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateAssetsTitle}" closeOnEscape="true">
+
+            <h:form id="AssetsCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateAssetsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{assetsController.selected.id}" title="#{myBundle.CreateAssetsTitle_id}" required="true" requiredMessage="#{myBundle.CreateAssetsRequiredMessage_id}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetsLabel_locationId}" for="locationId" />
+                        <p:inputText id="locationId" value="#{assetsController.selected.locationId}" title="#{myBundle.CreateAssetsTitle_locationId}" required="true" requiredMessage="#{myBundle.CreateAssetsRequiredMessage_locationId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetsLabel_groupId}" for="groupId" />
+                        <p:inputText id="groupId" value="#{assetsController.selected.groupId}" title="#{myBundle.CreateAssetsTitle_groupId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetsLabel_created}" for="created" />
+                        <p:calendar id="created" pattern="MM/dd/yyyy HH:mm:ss" value="#{assetsController.selected.created}" title="#{myBundle.CreateAssetsTitle_created}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetsLabel_modified}" for="modified" />
+                        <p:calendar id="modified" pattern="MM/dd/yyyy HH:mm:ss" value="#{assetsController.selected.modified}" title="#{myBundle.CreateAssetsTitle_modified}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetsLabel_tag}" for="tag" />
+                        <p:inputText id="tag" value="#{assetsController.selected.tag}" title="#{myBundle.CreateAssetsTitle_tag}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetsLabel_assetName}" for="assetName" />
+                        <p:inputText id="assetName" value="#{assetsController.selected.assetName}" title="#{myBundle.CreateAssetsTitle_assetName}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetsLabel_model}" for="model" />
+                        <p:inputText id="model" value="#{assetsController.selected.model}" title="#{myBundle.CreateAssetsTitle_model}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetsLabel_serNo}" for="serNo" />
+                        <p:inputText id="serNo" value="#{assetsController.selected.serNo}" title="#{myBundle.CreateAssetsTitle_serNo}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetsLabel_value}" for="value" />
+                        <p:inputText id="value" value="#{assetsController.selected.value}" title="#{myBundle.CreateAssetsTitle_value}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetsLabel_assetCondition}" for="assetCondition" />
+                        <p:inputText id="assetCondition" value="#{assetsController.selected.assetCondition}" title="#{myBundle.CreateAssetsTitle_assetCondition}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetsLabel_assetType}" for="assetType" />
+                        <p:inputText id="assetType" value="#{assetsController.selected.assetType}" title="#{myBundle.CreateAssetsTitle_assetType}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetsLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{assetsController.selected.status}" title="#{myBundle.CreateAssetsTitle_status}" required="true" requiredMessage="#{myBundle.CreateAssetsRequiredMessage_status}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{assetsController.saveNew}" value="#{myBundle.Save}" update="display,:AssetsListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,AssetsCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="AssetsCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

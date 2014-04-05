@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AssetgroupCreateDlg" widgetVar="AssetgroupCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateAssetgroupTitle}" closeOnEscape="true">
+
+            <h:form id="AssetgroupCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateAssetgroupLabel_assetgroupPK_assetID}" for="assetgroupPK_assetID" />
+                        <p:inputText id="assetgroupPK_assetID" value="#{assetgroupController.selected.assetgroupPK.assetID}" title="#{myBundle.CreateAssetgroupTitle_assetgroupPK_assetID}" required="true" requiredMessage="#{myBundle.CreateAssetgroupRequiredMessage_assetgroupPK_assetID}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetgroupLabel_assetgroupPK_groupID}" for="assetgroupPK_groupID" />
+                        <p:inputText id="assetgroupPK_groupID" value="#{assetgroupController.selected.assetgroupPK.groupID}" title="#{myBundle.CreateAssetgroupTitle_assetgroupPK_groupID}" required="true" requiredMessage="#{myBundle.CreateAssetgroupRequiredMessage_assetgroupPK_groupID}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{assetgroupController.saveNew}" value="#{myBundle.Save}" update="display,:AssetgroupListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,AssetgroupCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="AssetgroupCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

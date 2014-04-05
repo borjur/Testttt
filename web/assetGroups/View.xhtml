@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AssetGroupsViewDlg" widgetVar="AssetGroupsViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.ViewAssetGroupsTitle}" closeOnEscape="true">
+
+            <h:form id="AssetGroupsViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{assetGroupsController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewAssetGroupsLabel_id}"/>
+                        <h:outputText value="#{assetGroupsController.selected.id}" title="#{myBundle.ViewAssetGroupsTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewAssetGroupsLabel_assetId}"/>
+                        <h:outputText value="#{assetGroupsController.selected.assetId}" title="#{myBundle.ViewAssetGroupsTitle_assetId}"/>
+
+                        <h:outputText value="#{myBundle.ViewAssetGroupsLabel_created}"/>
+                        <h:outputText value="#{assetGroupsController.selected.created}" title="#{myBundle.ViewAssetGroupsTitle_created}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewAssetGroupsLabel_name}"/>
+                        <h:outputText value="#{assetGroupsController.selected.name}" title="#{myBundle.ViewAssetGroupsTitle_name}"/>
+
+                        <h:outputText value="#{myBundle.ViewAssetGroupsLabel_status}"/>
+                        <h:outputText value="#{assetGroupsController.selected.status}" title="#{myBundle.ViewAssetGroupsTitle_status}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="AssetGroupsViewDialog.hide()"/>
+                </h:panelGroup>
+                
+                
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

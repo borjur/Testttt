@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LocationViewDlg" widgetVar="LocationViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.ViewLocationTitle}" closeOnEscape="true">
+
+            <h:form id="LocationViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{locationController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewLocationLabel_id}"/>
+                        <h:outputText value="#{locationController.selected.id}" title="#{myBundle.ViewLocationTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewLocationLabel_name}"/>
+                        <h:outputText value="#{locationController.selected.name}" title="#{myBundle.ViewLocationTitle_name}"/>
+
+                        <h:outputText value="#{myBundle.ViewLocationLabel_address}"/>
+                        <h:outputText value="#{locationController.selected.address}" title="#{myBundle.ViewLocationTitle_address}"/>
+
+                        <h:outputText value="#{myBundle.ViewLocationLabel_city}"/>
+                        <h:outputText value="#{locationController.selected.city}" title="#{myBundle.ViewLocationTitle_city}"/>
+
+                        <h:outputText value="#{myBundle.ViewLocationLabel_state}"/>
+                        <h:outputText value="#{locationController.selected.state}" title="#{myBundle.ViewLocationTitle_state}"/>
+
+                        <h:outputText value="#{myBundle.ViewLocationLabel_zip}"/>
+                        <h:outputText value="#{locationController.selected.zip}" title="#{myBundle.ViewLocationTitle_zip}"/>
+
+                        <h:outputText value="#{myBundle.ViewLocationLabel_phone}"/>
+                        <h:outputText value="#{locationController.selected.phone}" title="#{myBundle.ViewLocationTitle_phone}"/>
+
+                        <h:outputText value="#{myBundle.ViewLocationLabel_district}"/>
+                        <h:outputText value="#{locationController.selected.district}" title="#{myBundle.ViewLocationTitle_district}"/>
+
+                        <h:outputText value="#{myBundle.ViewLocationLabel_created}"/>
+                        <h:outputText value="#{locationController.selected.created}" title="#{myBundle.ViewLocationTitle_created}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewLocationLabel_modified}"/>
+                        <h:outputText value="#{locationController.selected.modified}" title="#{myBundle.ViewLocationTitle_modified}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewLocationLabel_active}"/>
+                        <h:selectBooleanCheckbox id="active" value="#{locationController.selected.active}" title="#{myBundle.EditLocationTitle_active}" required="true" requiredMessage="#{myBundle.EditLocationRequiredMessage_active}" disabled="true"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="LocationViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

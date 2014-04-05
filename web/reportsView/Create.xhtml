@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReportsViewCreateDlg" widgetVar="ReportsViewCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateReportsViewTitle}" closeOnEscape="true">
+
+            <h:form id="ReportsViewCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateReportsViewLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{reportsViewController.selected.id}" title="#{myBundle.CreateReportsViewTitle_id}" required="true" requiredMessage="#{myBundle.CreateReportsViewRequiredMessage_id}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateReportsViewLabel_tag}" for="tag" />
+                        <p:inputText id="tag" value="#{reportsViewController.selected.tag}" title="#{myBundle.CreateReportsViewTitle_tag}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateReportsViewLabel_assetName}" for="assetName" />
+                        <p:inputText id="assetName" value="#{reportsViewController.selected.assetName}" title="#{myBundle.CreateReportsViewTitle_assetName}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateReportsViewLabel_model}" for="model" />
+                        <p:inputText id="model" value="#{reportsViewController.selected.model}" title="#{myBundle.CreateReportsViewTitle_model}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateReportsViewLabel_serNo}" for="serNo" />
+                        <p:inputText id="serNo" value="#{reportsViewController.selected.serNo}" title="#{myBundle.CreateReportsViewTitle_serNo}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateReportsViewLabel_value}" for="value" />
+                        <p:inputText id="value" value="#{reportsViewController.selected.value}" title="#{myBundle.CreateReportsViewTitle_value}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateReportsViewLabel_assetCondition}" for="assetCondition" />
+                        <p:inputText id="assetCondition" value="#{reportsViewController.selected.assetCondition}" title="#{myBundle.CreateReportsViewTitle_assetCondition}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateReportsViewLabel_assetType}" for="assetType" />
+                        <p:inputText id="assetType" value="#{reportsViewController.selected.assetType}" title="#{myBundle.CreateReportsViewTitle_assetType}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateReportsViewLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{reportsViewController.selected.name}" title="#{myBundle.CreateReportsViewTitle_name}" required="true" requiredMessage="#{myBundle.CreateReportsViewRequiredMessage_name}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.CreateReportsViewLabel_address}" for="address" />
+                        <p:inputText id="address" value="#{reportsViewController.selected.address}" title="#{myBundle.CreateReportsViewTitle_address}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateReportsViewLabel_city}" for="city" />
+                        <p:inputText id="city" value="#{reportsViewController.selected.city}" title="#{myBundle.CreateReportsViewTitle_city}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateReportsViewLabel_state}" for="state" />
+                        <p:inputText id="state" value="#{reportsViewController.selected.state}" title="#{myBundle.CreateReportsViewTitle_state}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateReportsViewLabel_zip}" for="zip" />
+                        <p:inputText id="zip" value="#{reportsViewController.selected.zip}" title="#{myBundle.CreateReportsViewTitle_zip}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.CreateReportsViewLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{reportsViewController.selected.phone}" title="#{myBundle.CreateReportsViewTitle_phone}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateReportsViewLabel_district}" for="district" />
+                        <p:inputText id="district" value="#{reportsViewController.selected.district}" title="#{myBundle.CreateReportsViewTitle_district}" required="true" requiredMessage="#{myBundle.CreateReportsViewRequiredMessage_district}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reportsViewController.saveNew}" value="#{myBundle.Save}" update="display,:ReportsViewListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ReportsViewCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="ReportsViewCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

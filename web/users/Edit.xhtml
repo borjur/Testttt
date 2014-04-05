@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="UsersEditDlg" widgetVar="UsersEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.EditUsersTitle}" closeOnEscape="true">
+
+            <h:form id="UsersEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{usersController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditUsersLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{usersController.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditUsersLabel_created}" for="created" />
+                        <p:calendar id="created" pattern="MM/dd/yyyy HH:mm:ss" value="#{usersController.selected.created}" title="#{myBundle.EditUsersTitle_created}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsersLabel_modified}" for="modified" />
+                        <p:calendar id="modified" pattern="MM/dd/yyyy HH:mm:ss" value="#{usersController.selected.modified}" title="#{myBundle.EditUsersTitle_modified}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsersLabel_username}" for="username" />
+                        <p:inputText id="username" value="#{usersController.selected.username}" title="#{myBundle.EditUsersTitle_username}" required="true" requiredMessage="#{myBundle.EditUsersRequiredMessage_username}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsersLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{usersController.selected.password}" title="#{myBundle.EditUsersTitle_password}" required="true" requiredMessage="#{myBundle.EditUsersRequiredMessage_password}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsersLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{usersController.selected.status}" title="#{myBundle.EditUsersTitle_status}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usersController.save}" value="#{myBundle.Save}" update="display,:UsersListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UsersEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="UsersEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

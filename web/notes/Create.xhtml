@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="NotesCreateDlg" widgetVar="NotesCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateNotesTitle}" closeOnEscape="true">
+
+            <h:form id="NotesCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateNotesLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{notesController.selected.id}" title="#{myBundle.CreateNotesTitle_id}" required="true" requiredMessage="#{myBundle.CreateNotesRequiredMessage_id}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateNotesLabel_assetId}" for="assetId" />
+                        <p:inputText id="assetId" value="#{notesController.selected.assetId}" title="#{myBundle.CreateNotesTitle_assetId}" required="true" requiredMessage="#{myBundle.CreateNotesRequiredMessage_assetId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateNotesLabel_created}" for="created" />
+                        <p:calendar id="created" pattern="MM/dd/yyyy HH:mm:ss" value="#{notesController.selected.created}" title="#{myBundle.CreateNotesTitle_created}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateNotesLabel_modified}" for="modified" />
+                        <p:calendar id="modified" pattern="MM/dd/yyyy HH:mm:ss" value="#{notesController.selected.modified}" title="#{myBundle.CreateNotesTitle_modified}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateNotesLabel_text}" for="text" />
+                        <p:inputTextarea rows="4" cols="30" id="text" value="#{notesController.selected.text}" title="#{myBundle.CreateNotesTitle_text}" />
+
+                        <p:outputLabel value="#{myBundle.CreateNotesLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{notesController.selected.status}" title="#{myBundle.CreateNotesTitle_status}" required="true" requiredMessage="#{myBundle.CreateNotesRequiredMessage_status}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{notesController.saveNew}" value="#{myBundle.Save}" update="display,:NotesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,NotesCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="NotesCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

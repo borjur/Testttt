@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="Group1ViewDlg" widgetVar="Group1ViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.ViewGroup1Title}" closeOnEscape="true">
+
+            <h:form id="Group1ViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{group1Controller.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewGroup1Label_id}"/>
+                        <h:outputText value="#{group1Controller.selected.id}" title="#{myBundle.ViewGroup1Title_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewGroup1Label_tag}"/>
+                        <h:outputText value="#{group1Controller.selected.tag}" title="#{myBundle.ViewGroup1Title_tag}"/>
+
+                        <h:outputText value="#{myBundle.ViewGroup1Label_name}"/>
+                        <h:outputText value="#{group1Controller.selected.name}" title="#{myBundle.ViewGroup1Title_name}"/>
+
+                        <h:outputText value="#{myBundle.ViewGroup1Label_created}"/>
+                        <h:outputText value="#{group1Controller.selected.created}" title="#{myBundle.ViewGroup1Title_created}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="Group1ViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

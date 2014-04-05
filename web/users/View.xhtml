@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsersViewDlg" widgetVar="UsersViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.ViewUsersTitle}" closeOnEscape="true">
+
+            <h:form id="UsersViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{usersController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewUsersLabel_id}"/>
+                        <h:outputText value="#{usersController.selected.id}" title="#{myBundle.ViewUsersTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewUsersLabel_created}"/>
+                        <h:outputText value="#{usersController.selected.created}" title="#{myBundle.ViewUsersTitle_created}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewUsersLabel_modified}"/>
+                        <h:outputText value="#{usersController.selected.modified}" title="#{myBundle.ViewUsersTitle_modified}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewUsersLabel_username}"/>
+                        <h:outputText value="#{usersController.selected.username}" title="#{myBundle.ViewUsersTitle_username}"/>
+
+                        <h:outputText value="#{myBundle.ViewUsersLabel_password}"/>
+                        <h:outputText value="#{usersController.selected.password}" title="#{myBundle.ViewUsersTitle_password}"/>
+
+                        <h:outputText value="#{myBundle.ViewUsersLabel_status}"/>
+                        <h:outputText value="#{usersController.selected.status}" title="#{myBundle.ViewUsersTitle_status}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="UsersViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

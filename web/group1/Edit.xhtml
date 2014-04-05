@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="Group1EditDlg" widgetVar="Group1EditDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.EditGroup1Title}" closeOnEscape="true">
+
+            <h:form id="Group1EditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{group1Controller.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditGroup1Label_id}" for="id" />
+                        <h:outputText id="id" value="#{group1Controller.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditGroup1Label_tag}" for="tag" />
+                        <p:inputText id="tag" value="#{group1Controller.selected.tag}" title="#{myBundle.EditGroup1Title_tag}" required="true" requiredMessage="#{myBundle.EditGroup1RequiredMessage_tag}" size="25" maxlength="25"/>
+
+                        <p:outputLabel value="#{myBundle.EditGroup1Label_name}" for="name" />
+                        <p:inputText id="name" value="#{group1Controller.selected.name}" title="#{myBundle.EditGroup1Title_name}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditGroup1Label_created}" for="created" />
+                        <p:calendar id="created" pattern="MM/dd/yyyy HH:mm:ss" value="#{group1Controller.selected.created}" title="#{myBundle.EditGroup1Title_created}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{group1Controller.save}" value="#{myBundle.Save}" update="display,:Group1ListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,Group1EditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="Group1EditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

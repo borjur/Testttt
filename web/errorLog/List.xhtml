@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ErrorLogListForm">
+
+        <p:panel header="#{myBundle.ListErrorLogTitle}">
+            <p:contextMenu for="datalist">  
+                <p:menuitem id="createMenuItem" icon="ui-icon-plus" value="#{myBundle.Create}" onclick="document.getElementById('ErrorLogListForm:createButton').click();"/>
+                <p:menuitem id="readMenuItem" icon="ui-icon-search" value="#{myBundle.View}" onclick="document.getElementById('ErrorLogListForm:viewButton').click();"/>
+                <p:menuitem id="updateMenuItem" icon="ui-icon-pencil" value="#{myBundle.Edit}" onclick="document.getElementById('ErrorLogListForm:editButton').click();"/>
+                <p:menuitem id="deleteMenuItem" icon="ui-icon-trash" value="#{myBundle.Delete}" onclick="document.getElementById('ErrorLogListForm:deleteButton').click();"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{errorLogController.items}"
+                         var="item"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{errorLogController.selected}">
+
+                <p:ajax event="rowSelect"   update=":ErrorLogListForm:createButton :ErrorLogListForm:viewButton :ErrorLogListForm:editButton :ErrorLogListForm:deleteButton"/>
+                <p:ajax event="rowUnselect" update=":ErrorLogListForm:createButton :ErrorLogListForm:viewButton :ErrorLogListForm:editButton :ErrorLogListForm:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('ErrorLogListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListErrorLogTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.created}" filterBy="#{item.created}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListErrorLogTitle_created}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.created}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.class1}" filterBy="#{item.class1}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListErrorLogTitle_class1}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.class1}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.method}" filterBy="#{item.method}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListErrorLogTitle_method}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.method}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.description}" filterBy="#{item.description}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListErrorLogTitle_description}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.description}"/>
+                </p:column>
+
+
+            </p:dataTable>
+            
+            
+             <h:panelGrid columns="2">
+	<p:panel header="Export All Data">
+            
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/excel.png" />
+			<p:dataExporter type="xls" target="datalist" fileName="items" />
+		</h:commandLink>
+
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/pdf.png" />
+			<p:dataExporter type="pdf" target="datalist" fileName="items"/>
+		</h:commandLink>
+		
+
+	</p:panel>
+	
+	<p:panel header="Export Page Data">
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/excel.png" />
+			<p:dataExporter type="xls" target="datalist" fileName="items" pageOnly="true"/>
+		</h:commandLink>
+
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/pdf.png" />
+			<p:dataExporter type="pdf" target="datalist" fileName="items" pageOnly="true"/>
+		</h:commandLink>
+		
+
+	</p:panel>
+</h:panelGrid>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{errorLogController.prepareCreate}" update=":ErrorLogCreateForm" oncomplete="ErrorLogCreateDialog.show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":ErrorLogViewForm" oncomplete="ErrorLogViewDialog.show()" disabled="#{empty errorLogController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ErrorLogEditForm" oncomplete="ErrorLogEditDialog.show()" disabled="#{empty errorLogController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{errorLogController.delete}" update=":growl,datalist" disabled="#{empty errorLogController.selected}"/>
+
+        </p:panel>
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReportsViewDlg" widgetVar="ReportsViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.ViewReportsTitle}" closeOnEscape="true">
+
+            <h:form id="ReportsViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{reportsController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewReportsLabel_id}"/>
+                        <h:outputText value="#{reportsController.selected.id}" title="#{myBundle.ViewReportsTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsLabel_tag}"/>
+                        <h:outputText value="#{reportsController.selected.tag}" title="#{myBundle.ViewReportsTitle_tag}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsLabel_name}"/>
+                        <h:outputText value="#{reportsController.selected.name}" title="#{myBundle.ViewReportsTitle_name}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsLabel_model}"/>
+                        <h:outputText value="#{reportsController.selected.model}" title="#{myBundle.ViewReportsTitle_model}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsLabel_serial}"/>
+                        <h:outputText value="#{reportsController.selected.serial}" title="#{myBundle.ViewReportsTitle_serial}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsLabel_value}"/>
+                        <h:outputText value="#{reportsController.selected.value}" title="#{myBundle.ViewReportsTitle_value}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsLabel_condtion}"/>
+                        <h:outputText value="#{reportsController.selected.condtion}" title="#{myBundle.ViewReportsTitle_condtion}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsLabel_type}"/>
+                        <h:outputText value="#{reportsController.selected.type}" title="#{myBundle.ViewReportsTitle_type}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsLabel_locationName}"/>
+                        <h:outputText value="#{reportsController.selected.locationName}" title="#{myBundle.ViewReportsTitle_locationName}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsLabel_address}"/>
+                        <h:outputText value="#{reportsController.selected.address}" title="#{myBundle.ViewReportsTitle_address}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsLabel_city}"/>
+                        <h:outputText value="#{reportsController.selected.city}" title="#{myBundle.ViewReportsTitle_city}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsLabel_state}"/>
+                        <h:outputText value="#{reportsController.selected.state}" title="#{myBundle.ViewReportsTitle_state}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsLabel_zip}"/>
+                        <h:outputText value="#{reportsController.selected.zip}" title="#{myBundle.ViewReportsTitle_zip}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsLabel_phone}"/>
+                        <h:outputText value="#{reportsController.selected.phone}" title="#{myBundle.ViewReportsTitle_phone}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsLabel_district}"/>
+                        <h:outputText value="#{reportsController.selected.district}" title="#{myBundle.ViewReportsTitle_district}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="ReportsViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

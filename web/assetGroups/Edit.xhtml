@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="AssetGroupsEditDlg" widgetVar="AssetGroupsEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.EditAssetGroupsTitle}" closeOnEscape="true">
+
+            <h:form id="AssetGroupsEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{assetGroupsController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditAssetGroupsLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{assetGroupsController.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditAssetGroupsLabel_assetId}" for="assetId" />
+                        <p:inputText id="assetId" value="#{assetGroupsController.selected.assetId}" title="#{myBundle.EditAssetGroupsTitle_assetId}" required="true" requiredMessage="#{myBundle.EditAssetGroupsRequiredMessage_assetId}"/>
+
+                        <p:outputLabel value="#{myBundle.EditAssetGroupsLabel_created}" for="created" />
+                        <p:calendar id="created" pattern="MM/dd/yyyy HH:mm:ss" value="#{assetGroupsController.selected.created}" title="#{myBundle.EditAssetGroupsTitle_created}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditAssetGroupsLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{assetGroupsController.selected.name}" title="#{myBundle.EditAssetGroupsTitle_name}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditAssetGroupsLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{assetGroupsController.selected.status}" title="#{myBundle.EditAssetGroupsTitle_status}" required="true" requiredMessage="#{myBundle.EditAssetGroupsRequiredMessage_status}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{assetGroupsController.save}" value="#{myBundle.Save}" update="display,:AssetGroupsListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,AssetGroupsEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="AssetGroupsEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

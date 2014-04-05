@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="AssetgroupEditDlg" widgetVar="AssetgroupEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.EditAssetgroupTitle}" closeOnEscape="true">
+
+            <h:form id="AssetgroupEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{assetgroupController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditAssetgroupLabel_assetgroupPK_assetID}" for="assetgroupPK_assetID" />
+                        <h:outputText id="assetgroupPK_assetID" value="#{assetgroupController.selected.assetgroupPK.assetID}" />
+
+
+                        <h:outputLabel value="#{myBundle.EditAssetgroupLabel_assetgroupPK_groupID}" for="assetgroupPK_groupID" />
+                        <h:outputText id="assetgroupPK_groupID" value="#{assetgroupController.selected.assetgroupPK.groupID}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{assetgroupController.save}" value="#{myBundle.Save}" update="display,:AssetgroupListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,AssetgroupEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="AssetgroupEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

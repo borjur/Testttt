@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReportsViewViewDlg" widgetVar="ReportsViewViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.ViewReportsViewTitle}" closeOnEscape="true">
+
+            <h:form id="ReportsViewViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{reportsViewController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewReportsViewLabel_id}"/>
+                        <h:outputText value="#{reportsViewController.selected.id}" title="#{myBundle.ViewReportsViewTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsViewLabel_tag}"/>
+                        <h:outputText value="#{reportsViewController.selected.tag}" title="#{myBundle.ViewReportsViewTitle_tag}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsViewLabel_assetName}"/>
+                        <h:outputText value="#{reportsViewController.selected.assetName}" title="#{myBundle.ViewReportsViewTitle_assetName}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsViewLabel_model}"/>
+                        <h:outputText value="#{reportsViewController.selected.model}" title="#{myBundle.ViewReportsViewTitle_model}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsViewLabel_serNo}"/>
+                        <h:outputText value="#{reportsViewController.selected.serNo}" title="#{myBundle.ViewReportsViewTitle_serNo}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsViewLabel_value}"/>
+                        <h:outputText value="#{reportsViewController.selected.value}" title="#{myBundle.ViewReportsViewTitle_value}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsViewLabel_assetCondition}"/>
+                        <h:outputText value="#{reportsViewController.selected.assetCondition}" title="#{myBundle.ViewReportsViewTitle_assetCondition}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsViewLabel_assetType}"/>
+                        <h:outputText value="#{reportsViewController.selected.assetType}" title="#{myBundle.ViewReportsViewTitle_assetType}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsViewLabel_name}"/>
+                        <h:outputText value="#{reportsViewController.selected.name}" title="#{myBundle.ViewReportsViewTitle_name}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsViewLabel_address}"/>
+                        <h:outputText value="#{reportsViewController.selected.address}" title="#{myBundle.ViewReportsViewTitle_address}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsViewLabel_city}"/>
+                        <h:outputText value="#{reportsViewController.selected.city}" title="#{myBundle.ViewReportsViewTitle_city}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsViewLabel_state}"/>
+                        <h:outputText value="#{reportsViewController.selected.state}" title="#{myBundle.ViewReportsViewTitle_state}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsViewLabel_zip}"/>
+                        <h:outputText value="#{reportsViewController.selected.zip}" title="#{myBundle.ViewReportsViewTitle_zip}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsViewLabel_phone}"/>
+                        <h:outputText value="#{reportsViewController.selected.phone}" title="#{myBundle.ViewReportsViewTitle_phone}"/>
+
+                        <h:outputText value="#{myBundle.ViewReportsViewLabel_district}"/>
+                        <h:outputText value="#{reportsViewController.selected.district}" title="#{myBundle.ViewReportsViewTitle_district}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="ReportsViewViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

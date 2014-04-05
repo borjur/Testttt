@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="AssetgroupListForm">
+
+        <p:panel header="#{myBundle.ListAssetgroupTitle}">
+            <p:contextMenu for="datalist">  
+                <p:menuitem id="createMenuItem" icon="ui-icon-plus" value="#{myBundle.Create}" onclick="document.getElementById('AssetgroupListForm:createButton').click();"/>
+                <p:menuitem id="readMenuItem" icon="ui-icon-search" value="#{myBundle.View}" onclick="document.getElementById('AssetgroupListForm:viewButton').click();"/>
+                <p:menuitem id="updateMenuItem" icon="ui-icon-pencil" value="#{myBundle.Edit}" onclick="document.getElementById('AssetgroupListForm:editButton').click();"/>
+                <p:menuitem id="deleteMenuItem" icon="ui-icon-trash" value="#{myBundle.Delete}" onclick="document.getElementById('AssetgroupListForm:deleteButton').click();"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{assetgroupController.items}"
+                         var="item"
+                         rowKey="#{item.assetgroupPK}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{assetgroupController.selected}">
+
+                <p:ajax event="rowSelect"   update=":AssetgroupListForm:createButton :AssetgroupListForm:viewButton :AssetgroupListForm:editButton :AssetgroupListForm:deleteButton"/>
+                <p:ajax event="rowUnselect" update=":AssetgroupListForm:createButton :AssetgroupListForm:viewButton :AssetgroupListForm:editButton :AssetgroupListForm:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('AssetgroupListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.assetgroupPK.assetID}" filterBy="#{item.assetgroupPK.assetID}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAssetgroupTitle_assetgroupPK_assetID}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.assetgroupPK.assetID}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.assetgroupPK.groupID}" filterBy="#{item.assetgroupPK.groupID}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListAssetgroupTitle_assetgroupPK_groupID}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.assetgroupPK.groupID}"/>
+                </p:column>
+
+
+            </p:dataTable>
+            
+                        <h:panelGrid columns="2">
+	<p:panel header="Export All Data">
+            
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/excel.png" />
+			<p:dataExporter type="xls" target="datalist" fileName="items" />
+		</h:commandLink>
+
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/pdf.png" />
+			<p:dataExporter type="pdf" target="datalist" fileName="items"/>
+		</h:commandLink>
+		
+
+	</p:panel>
+	
+	<p:panel header="Export Page Data">
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/excel.png" />
+			<p:dataExporter type="xls" target="datalist" fileName="items" pageOnly="true"/>
+		</h:commandLink>
+
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/pdf.png" />
+			<p:dataExporter type="pdf" target="datalist" fileName="items" pageOnly="true"/>
+		</h:commandLink>
+		
+
+	</p:panel>
+</h:panelGrid>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{assetgroupController.prepareCreate}" update=":AssetgroupCreateForm" oncomplete="AssetgroupCreateDialog.show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":AssetgroupViewForm" oncomplete="AssetgroupViewDialog.show()" disabled="#{empty assetgroupController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":AssetgroupEditForm" oncomplete="AssetgroupEditDialog.show()" disabled="#{empty assetgroupController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{assetgroupController.delete}" update=":growl,datalist" disabled="#{empty assetgroupController.selected}"/>
+
+        </p:panel>
+    </h:form>
+
+</ui:composition>

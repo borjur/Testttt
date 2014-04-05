@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ErrorLogEditDlg" widgetVar="ErrorLogEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.EditErrorLogTitle}" closeOnEscape="true">
+
+            <h:form id="ErrorLogEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{errorLogController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditErrorLogLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{errorLogController.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditErrorLogLabel_created}" for="created" />
+                        <p:calendar id="created" pattern="MM/dd/yyyy HH:mm:ss" value="#{errorLogController.selected.created}" title="#{myBundle.EditErrorLogTitle_created}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditErrorLogLabel_class1}" for="class1" />
+                        <p:inputText id="class1" value="#{errorLogController.selected.class1}" title="#{myBundle.EditErrorLogTitle_class1}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.EditErrorLogLabel_method}" for="method" />
+                        <p:inputText id="method" value="#{errorLogController.selected.method}" title="#{myBundle.EditErrorLogTitle_method}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.EditErrorLogLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{errorLogController.selected.description}" title="#{myBundle.EditErrorLogTitle_description}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{errorLogController.save}" value="#{myBundle.Save}" update="display,:ErrorLogListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ErrorLogEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="ErrorLogEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

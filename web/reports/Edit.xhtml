@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ReportsEditDlg" widgetVar="ReportsEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.EditReportsTitle}" closeOnEscape="true">
+
+            <h:form id="ReportsEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{reportsController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditReportsLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{reportsController.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditReportsLabel_tag}" for="tag" />
+                        <p:inputText id="tag" value="#{reportsController.selected.tag}" title="#{myBundle.EditReportsTitle_tag}" required="true" requiredMessage="#{myBundle.EditReportsRequiredMessage_tag}" size="70" maxlength="70"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{reportsController.selected.name}" title="#{myBundle.EditReportsTitle_name}" required="true" requiredMessage="#{myBundle.EditReportsRequiredMessage_name}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsLabel_model}" for="model" />
+                        <p:inputText id="model" value="#{reportsController.selected.model}" title="#{myBundle.EditReportsTitle_model}" required="true" requiredMessage="#{myBundle.EditReportsRequiredMessage_model}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsLabel_serial}" for="serial" />
+                        <p:inputText id="serial" value="#{reportsController.selected.serial}" title="#{myBundle.EditReportsTitle_serial}" required="true" requiredMessage="#{myBundle.EditReportsRequiredMessage_serial}" size="70" maxlength="70"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsLabel_value}" for="value" />
+                        <p:inputText id="value" value="#{reportsController.selected.value}" title="#{myBundle.EditReportsTitle_value}" required="true" requiredMessage="#{myBundle.EditReportsRequiredMessage_value}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsLabel_condtion}" for="condtion" />
+                        <p:inputText id="condtion" value="#{reportsController.selected.condtion}" title="#{myBundle.EditReportsTitle_condtion}" required="true" requiredMessage="#{myBundle.EditReportsRequiredMessage_condtion}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsLabel_type}" for="type" />
+                        <p:inputText id="type" value="#{reportsController.selected.type}" title="#{myBundle.EditReportsTitle_type}" required="true" requiredMessage="#{myBundle.EditReportsRequiredMessage_type}" size="70" maxlength="70"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsLabel_locationName}" for="locationName" />
+                        <p:inputText id="locationName" value="#{reportsController.selected.locationName}" title="#{myBundle.EditReportsTitle_locationName}" required="true" requiredMessage="#{myBundle.EditReportsRequiredMessage_locationName}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsLabel_address}" for="address" />
+                        <p:inputText id="address" value="#{reportsController.selected.address}" title="#{myBundle.EditReportsTitle_address}" required="true" requiredMessage="#{myBundle.EditReportsRequiredMessage_address}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsLabel_city}" for="city" />
+                        <p:inputText id="city" value="#{reportsController.selected.city}" title="#{myBundle.EditReportsTitle_city}" required="true" requiredMessage="#{myBundle.EditReportsRequiredMessage_city}" size="70" maxlength="70"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsLabel_state}" for="state" />
+                        <p:inputText id="state" value="#{reportsController.selected.state}" title="#{myBundle.EditReportsTitle_state}" required="true" requiredMessage="#{myBundle.EditReportsRequiredMessage_state}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsLabel_zip}" for="zip" />
+                        <p:inputText id="zip" value="#{reportsController.selected.zip}" title="#{myBundle.EditReportsTitle_zip}" required="true" requiredMessage="#{myBundle.EditReportsRequiredMessage_zip}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{reportsController.selected.phone}" title="#{myBundle.EditReportsTitle_phone}" required="true" requiredMessage="#{myBundle.EditReportsRequiredMessage_phone}" size="70" maxlength="70"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsLabel_district}" for="district" />
+                        <p:inputText id="district" value="#{reportsController.selected.district}" title="#{myBundle.EditReportsTitle_district}" required="true" requiredMessage="#{myBundle.EditReportsRequiredMessage_district}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reportsController.save}" value="#{myBundle.Save}" update="display,:ReportsListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ReportsEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="ReportsEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

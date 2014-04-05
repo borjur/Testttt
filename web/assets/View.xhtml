@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AssetsViewDlg" widgetVar="AssetsViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.ViewAssetsTitle}" closeOnEscape="true">
+
+            <h:form id="AssetsViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{assetsController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewAssetsLabel_id}"/>
+                        <h:outputText value="#{assetsController.selected.id}" title="#{myBundle.ViewAssetsTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewAssetsLabel_locationId}"/>
+                        <h:outputText value="#{assetsController.selected.locationId}" title="#{myBundle.ViewAssetsTitle_locationId}"/>
+
+                        <h:outputText value="#{myBundle.ViewAssetsLabel_groupId}"/>
+                        <h:outputText value="#{assetsController.selected.groupId}" title="#{myBundle.ViewAssetsTitle_groupId}"/>
+
+                        <h:outputText value="#{myBundle.ViewAssetsLabel_created}"/>
+                        <h:outputText value="#{assetsController.selected.created}" title="#{myBundle.ViewAssetsTitle_created}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewAssetsLabel_modified}"/>
+                        <h:outputText value="#{assetsController.selected.modified}" title="#{myBundle.ViewAssetsTitle_modified}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewAssetsLabel_tag}"/>
+                        <h:outputText value="#{assetsController.selected.tag}" title="#{myBundle.ViewAssetsTitle_tag}"/>
+
+                        <h:outputText value="#{myBundle.ViewAssetsLabel_assetName}"/>
+                        <h:outputText value="#{assetsController.selected.assetName}" title="#{myBundle.ViewAssetsTitle_assetName}"/>
+
+                        <h:outputText value="#{myBundle.ViewAssetsLabel_model}"/>
+                        <h:outputText value="#{assetsController.selected.model}" title="#{myBundle.ViewAssetsTitle_model}"/>
+
+                        <h:outputText value="#{myBundle.ViewAssetsLabel_serNo}"/>
+                        <h:outputText value="#{assetsController.selected.serNo}" title="#{myBundle.ViewAssetsTitle_serNo}"/>
+
+                        <h:outputText value="#{myBundle.ViewAssetsLabel_value}"/>
+                        <h:outputText value="#{assetsController.selected.value}" title="#{myBundle.ViewAssetsTitle_value}"/>
+
+                        <h:outputText value="#{myBundle.ViewAssetsLabel_assetCondition}"/>
+                        <h:outputText value="#{assetsController.selected.assetCondition}" title="#{myBundle.ViewAssetsTitle_assetCondition}"/>
+
+                        <h:outputText value="#{myBundle.ViewAssetsLabel_assetType}"/>
+                        <h:outputText value="#{assetsController.selected.assetType}" title="#{myBundle.ViewAssetsTitle_assetType}"/>
+
+                        <h:outputText value="#{myBundle.ViewAssetsLabel_status}"/>
+                        <h:outputText value="#{assetsController.selected.status}" title="#{myBundle.ViewAssetsTitle_status}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="AssetsViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

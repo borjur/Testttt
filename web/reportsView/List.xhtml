@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ReportsViewListForm">
+
+        <p:panel header="#{myBundle.ListReportsViewTitle}">
+            <p:contextMenu for="datalist">  
+                <p:menuitem id="createMenuItem" icon="ui-icon-plus" value="#{myBundle.Create}" onclick="document.getElementById('ReportsViewListForm:createButton').click();"/>
+                <p:menuitem id="readMenuItem" icon="ui-icon-search" value="#{myBundle.View}" onclick="document.getElementById('ReportsViewListForm:viewButton').click();"/>
+                <p:menuitem id="updateMenuItem" icon="ui-icon-pencil" value="#{myBundle.Edit}" onclick="document.getElementById('ReportsViewListForm:editButton').click();"/>
+                <p:menuitem id="deleteMenuItem" icon="ui-icon-trash" value="#{myBundle.Delete}" onclick="document.getElementById('ReportsViewListForm:deleteButton').click();"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{reportsViewController.items}"
+                         var="item"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{reportsViewController.selected}">
+
+                <p:ajax event="rowSelect"   update=":ReportsViewListForm:createButton :ReportsViewListForm:viewButton :ReportsViewListForm:editButton :ReportsViewListForm:deleteButton"/>
+                <p:ajax event="rowUnselect" update=":ReportsViewListForm:createButton :ReportsViewListForm:viewButton :ReportsViewListForm:editButton :ReportsViewListForm:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('ReportsViewListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListReportsViewTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.tag}" filterBy="#{item.tag}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListReportsViewTitle_tag}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tag}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.assetName}" filterBy="#{item.assetName}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListReportsViewTitle_assetName}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.assetName}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.model}" filterBy="#{item.model}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListReportsViewTitle_model}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.model}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.serNo}" filterBy="#{item.serNo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListReportsViewTitle_serNo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.serNo}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.value}" filterBy="#{item.value}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListReportsViewTitle_value}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.value}"/>
+                </p:column>
+
+                
+                                    <p:column sortBy="#{item.assetCondition}" filterBy="#{item.assetCondition}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListReportsViewTitle_assetCondition}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.assetCondition}"/>
+                                    </p:column>
+                
+                
+                                    <p:column sortBy="#{item.assetType}" filterBy="#{item.assetType}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListReportsViewTitle_assetType}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.assetType}"/>
+                                    </p:column>
+                
+                
+                                    <p:column sortBy="#{item.name}" filterBy="#{item.name}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListReportsViewTitle_name}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.name}"/>
+                                    </p:column>
+                -
+                
+                                    <p:column sortBy="#{item.address}" filterBy="#{item.address}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListReportsViewTitle_address}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.address}"/>
+                                    </p:column>
+                
+
+                                    <p:column sortBy="#{item.city}" filterBy="#{item.city}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListReportsViewTitle_city}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.city}"/>
+                                    </p:column>
+                
+               
+                                    <p:column sortBy="#{item.state}" filterBy="#{item.state}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListReportsViewTitle_state}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.state}"/>
+                                    </p:column>
+                
+                
+                                    <p:column sortBy="#{item.zip}" filterBy="#{item.zip}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListReportsViewTitle_zip}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.zip}"/>
+                                    </p:column>
+                
+                
+                                    <p:column sortBy="#{item.phone}" filterBy="#{item.phone}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListReportsViewTitle_phone}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.phone}"/>
+                                    </p:column>
+                
+                
+                                    <p:column sortBy="#{item.district}" filterBy="#{item.district}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListReportsViewTitle_district}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.district}"/>
+                                    </p:column>
+                
+
+            </p:dataTable>
+
+             <h:panelGrid columns="2">
+	<p:panel header="Export All Data">
+            
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/excel.png" />
+			<p:dataExporter type="xls" target="datalist" fileName="items" />
+		</h:commandLink>
+
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/pdf.png" />
+			<p:dataExporter type="pdf" target="datalist" fileName="items"/>
+		</h:commandLink>
+		
+
+	</p:panel>
+	
+	<p:panel header="Export Page Data">
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/excel.png" />
+			<p:dataExporter type="xls" target="datalist" fileName="items" pageOnly="true"/>
+		</h:commandLink>
+
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/pdf.png" />
+			<p:dataExporter type="pdf" target="datalist" fileName="items" pageOnly="true"/>
+		</h:commandLink>
+		
+
+	</p:panel>
+</h:panelGrid>
+            
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{reportsViewController.prepareCreate}" update=":ReportsViewCreateForm" oncomplete="ReportsViewCreateDialog.show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":ReportsViewViewForm" oncomplete="ReportsViewViewDialog.show()" disabled="#{empty reportsViewController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ReportsViewEditForm" oncomplete="ReportsViewEditDialog.show()" disabled="#{empty reportsViewController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{reportsViewController.delete}" update=":growl,datalist" disabled="#{empty reportsViewController.selected}"/>
+
+        </p:panel>
+    </h:form>
+
+</ui:composition>

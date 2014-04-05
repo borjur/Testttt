@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="DistrictListForm">
+
+        <p:panel header="#{myBundle.ListDistrictTitle}">
+            <p:contextMenu for="datalist">  
+                <p:menuitem id="createMenuItem" icon="ui-icon-plus" value="#{myBundle.Create}" onclick="document.getElementById('DistrictListForm:createButton').click();"/>
+                <p:menuitem id="readMenuItem" icon="ui-icon-search" value="#{myBundle.View}" onclick="document.getElementById('DistrictListForm:viewButton').click();"/>
+                <p:menuitem id="updateMenuItem" icon="ui-icon-pencil" value="#{myBundle.Edit}" onclick="document.getElementById('DistrictListForm:editButton').click();"/>
+                <p:menuitem id="deleteMenuItem" icon="ui-icon-trash" value="#{myBundle.Delete}" onclick="document.getElementById('DistrictListForm:deleteButton').click();"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{districtController.items}"
+                         var="item"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{districtController.selected}">
+
+                <p:ajax event="rowSelect"   update=":DistrictListForm:createButton :DistrictListForm:viewButton :DistrictListForm:editButton :DistrictListForm:deleteButton"/>
+                <p:ajax event="rowUnselect" update=":DistrictListForm:createButton :DistrictListForm:viewButton :DistrictListForm:editButton :DistrictListForm:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('DistrictListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDistrictTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.name}" filterBy="#{item.name}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDistrictTitle_name}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.name}"/>
+                </p:column>
+
+
+            </p:dataTable>
+            
+            
+             <h:panelGrid columns="2">
+	<p:panel header="Export All Data">
+            
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/excel.png" />
+			<p:dataExporter type="xls" target="datalist" fileName="items" />
+		</h:commandLink>
+
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/pdf.png" />
+			<p:dataExporter type="pdf" target="datalist" fileName="items"/>
+		</h:commandLink>
+		
+
+	</p:panel>
+	
+	<p:panel header="Export Page Data">
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/excel.png" />
+			<p:dataExporter type="xls" target="datalist" fileName="items" pageOnly="true"/>
+		</h:commandLink>
+
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/pdf.png" />
+			<p:dataExporter type="pdf" target="datalist" fileName="items" pageOnly="true"/>
+		</h:commandLink>
+		
+
+	</p:panel>
+</h:panelGrid>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{districtController.prepareCreate}" update=":DistrictCreateForm" oncomplete="DistrictCreateDialog.show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":DistrictViewForm" oncomplete="DistrictViewDialog.show()" disabled="#{empty districtController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":DistrictEditForm" oncomplete="DistrictEditDialog.show()" disabled="#{empty districtController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{districtController.delete}" update=":growl,datalist" disabled="#{empty districtController.selected}"/>
+
+        </p:panel>
+    </h:form>
+
+</ui:composition>

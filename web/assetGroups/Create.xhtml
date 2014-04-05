@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AssetGroupsCreateDlg" widgetVar="AssetGroupsCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateAssetGroupsTitle}" closeOnEscape="true">
+
+            <h:form id="AssetGroupsCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateAssetGroupsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{assetGroupsController.selected.id}" title="#{myBundle.CreateAssetGroupsTitle_id}" required="true" requiredMessage="#{myBundle.CreateAssetGroupsRequiredMessage_id}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetGroupsLabel_assetId}" for="assetId" />
+                        <p:inputText id="assetId" value="#{assetGroupsController.selected.assetId}" title="#{myBundle.CreateAssetGroupsTitle_assetId}" required="true" requiredMessage="#{myBundle.CreateAssetGroupsRequiredMessage_assetId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetGroupsLabel_created}" for="created" />
+                        <p:calendar id="created" pattern="MM/dd/yyyy HH:mm:ss" value="#{assetGroupsController.selected.created}" title="#{myBundle.CreateAssetGroupsTitle_created}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetGroupsLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{assetGroupsController.selected.name}" title="#{myBundle.CreateAssetGroupsTitle_name}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateAssetGroupsLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{assetGroupsController.selected.status}" title="#{myBundle.CreateAssetGroupsTitle_status}" required="true" requiredMessage="#{myBundle.CreateAssetGroupsRequiredMessage_status}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{assetGroupsController.saveNew}" value="#{myBundle.Save}" update="display,:AssetGroupsListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,AssetGroupsCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="AssetGroupsCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

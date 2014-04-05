@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="NotesListForm">
+
+        <p:panel header="#{myBundle.ListNotesTitle}">
+            <p:contextMenu for="datalist">  
+                <p:menuitem id="createMenuItem" icon="ui-icon-plus" value="#{myBundle.Create}" onclick="document.getElementById('NotesListForm:createButton').click();"/>
+                <p:menuitem id="readMenuItem" icon="ui-icon-search" value="#{myBundle.View}" onclick="document.getElementById('NotesListForm:viewButton').click();"/>
+                <p:menuitem id="updateMenuItem" icon="ui-icon-pencil" value="#{myBundle.Edit}" onclick="document.getElementById('NotesListForm:editButton').click();"/>
+                <p:menuitem id="deleteMenuItem" icon="ui-icon-trash" value="#{myBundle.Delete}" onclick="document.getElementById('NotesListForm:deleteButton').click();"/>
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{notesController.items}"
+                         var="item"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{notesController.selected}">
+
+                <p:ajax event="rowSelect"   update=":NotesListForm:createButton :NotesListForm:viewButton :NotesListForm:editButton :NotesListForm:deleteButton"/>
+                <p:ajax event="rowUnselect" update=":NotesListForm:createButton :NotesListForm:viewButton :NotesListForm:editButton :NotesListForm:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('NotesListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListNotesTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.assetId}" filterBy="#{item.assetId}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListNotesTitle_assetId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.assetId}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.created}" filterBy="#{item.created}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListNotesTitle_created}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.created}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.modified}" filterBy="#{item.modified}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListNotesTitle_modified}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.modified}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.text}" filterBy="#{item.text}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListNotesTitle_text}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.text}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.status}" filterBy="#{item.status}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListNotesTitle_status}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.status}"/>
+                </p:column>
+
+
+            </p:dataTable>
+            
+            
+             <h:panelGrid columns="2">
+	<p:panel header="Export All Data">
+            
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/excel.png" />
+			<p:dataExporter type="xls" target="datalist" fileName="items" />
+		</h:commandLink>
+
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/pdf.png" />
+			<p:dataExporter type="pdf" target="datalist" fileName="items"/>
+		</h:commandLink>
+		
+
+	</p:panel>
+	
+	<p:panel header="Export Page Data">
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/excel.png" />
+			<p:dataExporter type="xls" target="datalist" fileName="items" pageOnly="true"/>
+		</h:commandLink>
+
+		<h:commandLink>
+			<p:graphicImage value="/resources/images/pdf.png" />
+			<p:dataExporter type="pdf" target="datalist" fileName="items" pageOnly="true"/>
+		</h:commandLink>
+		
+
+	</p:panel>
+</h:panelGrid>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{notesController.prepareCreate}" update=":NotesCreateForm" oncomplete="NotesCreateDialog.show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":NotesViewForm" oncomplete="NotesViewDialog.show()" disabled="#{empty notesController.selected}"/>
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":NotesEditForm" oncomplete="NotesEditDialog.show()" disabled="#{empty notesController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{notesController.delete}" update=":growl,datalist" disabled="#{empty notesController.selected}"/>
+
+        </p:panel>
+    </h:form>
+
+</ui:composition>

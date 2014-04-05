@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ReportsViewEditDlg" widgetVar="ReportsViewEditDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.EditReportsViewTitle}" closeOnEscape="true">
+
+            <h:form id="ReportsViewEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{reportsViewController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditReportsViewLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{reportsViewController.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditReportsViewLabel_tag}" for="tag" />
+                        <p:inputText id="tag" value="#{reportsViewController.selected.tag}" title="#{myBundle.EditReportsViewTitle_tag}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsViewLabel_assetName}" for="assetName" />
+                        <p:inputText id="assetName" value="#{reportsViewController.selected.assetName}" title="#{myBundle.EditReportsViewTitle_assetName}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsViewLabel_model}" for="model" />
+                        <p:inputText id="model" value="#{reportsViewController.selected.model}" title="#{myBundle.EditReportsViewTitle_model}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsViewLabel_serNo}" for="serNo" />
+                        <p:inputText id="serNo" value="#{reportsViewController.selected.serNo}" title="#{myBundle.EditReportsViewTitle_serNo}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsViewLabel_value}" for="value" />
+                        <p:inputText id="value" value="#{reportsViewController.selected.value}" title="#{myBundle.EditReportsViewTitle_value}"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsViewLabel_assetCondition}" for="assetCondition" />
+                        <p:inputText id="assetCondition" value="#{reportsViewController.selected.assetCondition}" title="#{myBundle.EditReportsViewTitle_assetCondition}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsViewLabel_assetType}" for="assetType" />
+                        <p:inputText id="assetType" value="#{reportsViewController.selected.assetType}" title="#{myBundle.EditReportsViewTitle_assetType}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsViewLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{reportsViewController.selected.name}" title="#{myBundle.EditReportsViewTitle_name}" required="true" requiredMessage="#{myBundle.EditReportsViewRequiredMessage_name}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsViewLabel_address}" for="address" />
+                        <p:inputText id="address" value="#{reportsViewController.selected.address}" title="#{myBundle.EditReportsViewTitle_address}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsViewLabel_city}" for="city" />
+                        <p:inputText id="city" value="#{reportsViewController.selected.city}" title="#{myBundle.EditReportsViewTitle_city}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsViewLabel_state}" for="state" />
+                        <p:inputText id="state" value="#{reportsViewController.selected.state}" title="#{myBundle.EditReportsViewTitle_state}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsViewLabel_zip}" for="zip" />
+                        <p:inputText id="zip" value="#{reportsViewController.selected.zip}" title="#{myBundle.EditReportsViewTitle_zip}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsViewLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{reportsViewController.selected.phone}" title="#{myBundle.EditReportsViewTitle_phone}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.EditReportsViewLabel_district}" for="district" />
+                        <p:inputText id="district" value="#{reportsViewController.selected.district}" title="#{myBundle.EditReportsViewTitle_district}" required="true" requiredMessage="#{myBundle.EditReportsViewRequiredMessage_district}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reportsViewController.save}" value="#{myBundle.Save}" update="display,:ReportsViewListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ReportsViewEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="ReportsViewEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

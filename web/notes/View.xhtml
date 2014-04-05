@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="NotesViewDlg" widgetVar="NotesViewDialog" modal="true" resizable="false"  appendToBody="true" header="#{myBundle.ViewNotesTitle}" closeOnEscape="true">
+
+            <h:form id="NotesViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{notesController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewNotesLabel_id}"/>
+                        <h:outputText value="#{notesController.selected.id}" title="#{myBundle.ViewNotesTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewNotesLabel_assetId}"/>
+                        <h:outputText value="#{notesController.selected.assetId}" title="#{myBundle.ViewNotesTitle_assetId}"/>
+
+                        <h:outputText value="#{myBundle.ViewNotesLabel_created}"/>
+                        <h:outputText value="#{notesController.selected.created}" title="#{myBundle.ViewNotesTitle_created}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewNotesLabel_modified}"/>
+                        <h:outputText value="#{notesController.selected.modified}" title="#{myBundle.ViewNotesTitle_modified}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewNotesLabel_text}"/>
+                        <h:outputText value="#{notesController.selected.text}" title="#{myBundle.ViewNotesTitle_text}"/>
+
+                        <h:outputText value="#{myBundle.ViewNotesLabel_status}"/>
+                        <h:outputText value="#{notesController.selected.status}" title="#{myBundle.ViewNotesTitle_status}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="NotesViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

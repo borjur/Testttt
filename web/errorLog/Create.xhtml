@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ErrorLogCreateDlg" widgetVar="ErrorLogCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateErrorLogTitle}" closeOnEscape="true">
+
+            <h:form id="ErrorLogCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateErrorLogLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{errorLogController.selected.id}" title="#{myBundle.CreateErrorLogTitle_id}" required="true" requiredMessage="#{myBundle.CreateErrorLogRequiredMessage_id}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateErrorLogLabel_created}" for="created" />
+                        <p:calendar id="created" pattern="MM/dd/yyyy HH:mm:ss" value="#{errorLogController.selected.created}" title="#{myBundle.CreateErrorLogTitle_created}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateErrorLogLabel_class1}" for="class1" />
+                        <p:inputText id="class1" value="#{errorLogController.selected.class1}" title="#{myBundle.CreateErrorLogTitle_class1}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateErrorLogLabel_method}" for="method" />
+                        <p:inputText id="method" value="#{errorLogController.selected.method}" title="#{myBundle.CreateErrorLogTitle_method}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateErrorLogLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{errorLogController.selected.description}" title="#{myBundle.CreateErrorLogTitle_description}" size="255" maxlength="255"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{errorLogController.saveNew}" value="#{myBundle.Save}" update="display,:ErrorLogListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ErrorLogCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="ErrorLogCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
